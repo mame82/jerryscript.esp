@@ -35,21 +35,25 @@ if (${CONFIG_JERRYSCRIPT_MALLOC_STRATEGY_SPIRAM})
     --compile-flag=${JERRY_COMPILE_FLAGS}
     --toolchain=${CMAKE_TOOLCHAIN_FILE}
     --cmake-param=-GNinja
+    --cmake-param=-DJERRY_ERROR_MESSAGES=ON
+    --cmake-param=-DJERRY_LINE_INFO=ON
     --cmake-param=-DJERRY_ATTR_GLOBAL_HEAP=__attribute__\(\(section\(\".ext_ram.bss\"\)\)\)
     )
 else()
   execute_process(COMMAND ${python} ${JERRY_ROOT_DIR}/tools/build.py
-  --clean
-  --builddir=${JERRY_BUILD_DIR}
-  --lto=OFF
-  --jerry-cmdline=OFF
-  --jerry-math=OFF
-  --amalgam=ON
-  --mem-heap=${CONFIG_JERRYSCRIPT_HEAP_SIZE}
-  --profile=es.next
-  --compile-flag=${JERRY_COMPILE_FLAGS}
-  --toolchain=${CMAKE_TOOLCHAIN_FILE}
-  --cmake-param=-GNinja
+    --clean
+    --builddir=${JERRY_BUILD_DIR}
+    --lto=OFF
+    --jerry-cmdline=OFF
+    --jerry-math=OFF
+    --amalgam=ON
+    --mem-heap=${CONFIG_JERRYSCRIPT_HEAP_SIZE}
+    --profile=es.next
+    --compile-flag=${JERRY_COMPILE_FLAGS}
+    --toolchain=${CMAKE_TOOLCHAIN_FILE}
+    --cmake-param=-GNinja
+    --cmake-param=-DJERRY_ERROR_MESSAGES=ON
+    --cmake-param=-DJERRY_LINE_INFO=ON
   )
 endif()
 
